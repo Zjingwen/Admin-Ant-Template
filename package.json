@@ -1,0 +1,68 @@
+{
+  "name": "admin",
+  "version": "1.2.5",
+  "description": "管理台通用模版",
+  "author": "jingwen <309940379@qq.com>",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "roadhog server",
+    "build": "roadhog build",
+    "lint": "eslint --ext .js src"
+  },
+  "keywords": [
+    "react",
+    "admin",
+    "antd",
+    "template"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zjingwen/Archer.git"
+  },
+  "dependencies": {
+
+  },
+  "devDependencies": {
+    "antd": "3.16.1",
+    "babel-plugin-import": "1.6.7",
+    "co": "4.6.0",
+    "dva": "2.4.1",
+    "history": "4.7.2",
+    "mockjs": "1.0.1-beta3",
+    "moment": "2.22.2",
+    "react": "16.8.6",
+    "react-dom": "16.8.6",
+    "underscore": "1.9.1",
+    "axios": "0.18.0",
+    "babel-plugin-dva-hmr": "0.3.2",
+    "eslint": "4.14.0",
+    "eslint-config-umi": "0.1.1",
+    "eslint-plugin-flowtype": "2.34.1",
+    "eslint-plugin-import": "2.6.0",
+    "eslint-plugin-jsx-a11y": "5.1.1",
+    "eslint-plugin-react": "7.12.4",
+    "husky": "1.1.2",
+    "prop-types": "15.6.1",
+    "react-loadable": "^5.5.0",
+    "redbox-react": "1.4.3",
+    "roadhog": "2.5.0-beta.4"
+  },
+  "engines": {
+    "node": ">=8.9.1",
+    "npm": ">=6.1.0"
+  },
+  "conf_liberty": {
+    "root": "/admin",
+    "path": "mock",
+    "url": {
+      "mock": "http://localhost:8000/",
+      "development": "http://localhost:8001/",
+      "production": "http://localhost:8002/"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
+  }
+}

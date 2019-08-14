@@ -4,7 +4,7 @@
 import loadable from '@utils/loadable';
 
 export default {
-  path: '/index',
+  path: '/',
   component: loadable(import('./index')),
   menu: false
 };

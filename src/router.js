@@ -1,10 +1,7 @@
 import React from 'react';
 import { Router, Route, Switch } from 'dva/router';
-import {conf_liberty} from '@pkg';
-import NotFound from '@pages/notFoundPage/404';
+import NotFound from './pages/notFoundPage/404';
 import routerMap from './pages';
-
-const PAK_CONF_ROOT = conf_liberty.root;
 
 /**
  * 将model注册到app中
@@ -25,28 +22,23 @@ function registerModel(app, model){
  * @param {object} b.app   app实例方法，供registerModel使用
  * @returns {function} React.component 对象
  */
-function setRoute({value, root, app}){
+function setRoute({value, prev, app, root}){
   // 判断是否要注册model
   value.model && registerModel(app, value.model);
-
-  let PATH = root ? 
-    root + value.path:
-    value.path;
-
-  if(PAK_CONF_ROOT) PATH = PAK_CONF_ROOT+PATH;
-  const COMPONENT = value.component;
-
+  let {path:p, component} = value;
+  let path = prev ? `${prev}${p}`: p;
+  let rou = root ? `${root}${path}`: path; 
   return (
-    <Route 
+    <Route
       exact
-      key={PATH}
-      path={PATH}
-      component={COMPONENT}
+      key={rou}
+      path={rou}
+      component={component}
     />
   );
 };
 
-export default ({history, app})=>{
+export default ({history, app, root=''})=>{
   const routers = routerMap.map((value) => {
     let r = [];
 
@@ -57,13 +49,15 @@ export default ({history, app})=>{
         const next = value.next[--len];
         r.push(setRoute({
           value: next,
-          root: value.path,
+          prev: value.path,
+          root: root,
           app: app,
         }));
       };
     }else{
       r.push(setRoute({
         value: value,
+        root: root,
         app: app,
       }));
     };
@@ -75,8 +69,8 @@ export default ({history, app})=>{
     <Router history={history}>
       <Switch>
         {routers}
-        <Route component={NotFound}/>
+        <Route component={NotFound}/>        
       </Switch>
     </Router>
   );
-}; 
+};

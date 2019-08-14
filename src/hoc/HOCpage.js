@@ -1,19 +1,22 @@
 import { Component } from 'react';
 import { isEqual } from 'underscore';
-import { authentication, queryToJson } from '@utils/assist';
-import Frome from '@components/Frome';
+import { authentication, queryToJson, jsonToQuery } from '@utils/assist';
+import Framing from '@components/Framing';
+import routerMap from '../pages/index';
+
+function handleGetQuery(q) {
+  return q ? queryToJson(q) : {};
+}
 
 /**
  * page的高阶组件
  * @param {component} WrappedComponent 需要包裹的页面
  */
-export default function index(WrappedComponent){
-  return class extends Component{
-    constructor(props){
+export default function index(WrappedComponent) {
+  return class extends Component {
+    constructor(props) {
       super(props);
-      authentication(this);
-      const query = queryToJson(props.history.location.search);
-
+      const query = props.history && handleGetQuery(props.history.location.search);
       this.state = {
         query: query,
       };
@@ -21,17 +24,18 @@ export default function index(WrappedComponent){
       this.storeRef = this.storeRef.bind(this);
     };
 
-    static getDerivedStateFromProps(props, state){
-      let query = queryToJson(props.history.location.search);
-      return isEqual(query, state.query) ? null : {query: query};
+    static getDerivedStateFromProps(props, state) {
+      const query = props.history && handleGetQuery(props.history.location.search);
+      return isEqual(query, state.query) ? null : { query: query };
     }
 
-    componentDidMount(){
+    componentDidMount() {
+      authentication(this);
       this.ref.handleFrom && this.ref.handleFrom();
     };
 
-    componentDidUpdate(prevProps, prevState){
-      if(!isEqual(prevState, this.state)){
+    componentDidUpdate(prevProps, prevState) {
+      if (!isEqual(prevState, this.state)) {
         this.setState({
           ...this.state,
         });
@@ -39,19 +43,59 @@ export default function index(WrappedComponent){
       }
     };
 
-    storeRef(ref){
+    storeRef(ref) {
       this.ref = ref;
     };
 
-    render(){
-      return(
-        <Frome>
-          <WrappedComponent
-            {...this.props}
-            {...this.state}
-            ref = {this.storeRef}
-          />
-        </Frome>
+    hocHistory(query) {
+      const { pathname } = this.props.history.location;
+      this.props.history.push(`${pathname}?${jsonToQuery(query)}`);
+    }
+
+    handleOut() {
+      localStorage.removeItem('userInfo');
+      window.location.href = '/ziying/user/sign';
+    };
+
+    render() {
+      // 混入方法
+      const mixin = {
+        hocHistory: (q) => this.hocHistory(q),
+      };
+
+      let userName = '';
+      if (localStorage.getItem('userInfo')) {
+        userName = JSON.parse(localStorage.getItem('userInfo')).name;
+      } else {
+        this.handleOut();
+      }
+
+      const headerMenus = <>
+        <span onClick={() => this.handleOut()}>退出登陆</span>
+        <span onClick={() => { }}></span>
+      </>;
+
+      const style = {
+        background: '#FFF',
+        padding: '20px',
+      };
+
+      return (
+        <Framing
+          name={userName}
+          headerMenus={headerMenus}
+          routerMap={routerMap}
+          root="/ziying"
+        >
+          <div style={style}>
+            <WrappedComponent
+              {...mixin}
+              {...this.props}
+              {...this.state}
+              ref={this.storeRef}
+            />
+          </div>
+        </Framing>
       );
     };
   };

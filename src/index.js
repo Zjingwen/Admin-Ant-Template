@@ -1,24 +1,17 @@
-/**
- * @todo 优化 将PATH改为package中的conf_liberty
- */
-import 'antd/node_modules/moment/locale/zh-cn';
 import './index.css';
 
 import dva from 'dva';
 import browserHistory from 'history/createBrowserHistory';
-import moment from 'antd/node_modules/moment';
 import router from './router';
-import {message} from 'antd';
+import { message } from 'antd';
 
-moment.locale('zh-cn');
-const PATH = '/admin'; // 设置根路径
+const root = '/ziying';
+
 // 1. Initialize
 const app = dva({
-  initialState: {
-  },
   history: browserHistory(),
-  onError(e){
-    message.error(e.toString());
+  onError(e) {// 报错提示
+    message.error(e.message);
   },
 });
 
@@ -26,10 +19,10 @@ const app = dva({
 // app.use({});
 
 // 3. Model 
-// app.model();  
+// app.model(login);
 
 // 4. Router
-app.router(({ history, app})=>router({history, app, PATH}));
+app.router(({ history, app }) => router({ history, app, root }));
 
 // 5. Start
 app.start('#root');

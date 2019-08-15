@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { isEqual } from 'underscore';
 import { authentication, queryToJson, jsonToQuery } from '@utils/assist';
 import Framing from '@components/Framing';
@@ -70,10 +70,10 @@ export default function index(WrappedComponent) {
         this.handleOut();
       }
 
-      const headerMenus = <>
+      const headerMenus = <div>
         <span onClick={() => this.handleOut()}>退出登陆</span>
         <span onClick={() => { }}></span>
-      </>;
+      </div>;
 
       const style = {
         background: '#FFF',

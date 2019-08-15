@@ -3,7 +3,6 @@
  * @utils 公共方法
  * @pages 页面
  * @components 公共组建
- * @models redux数据流
  * @hoc 高阶组件
  * @pkg package.json配置
  */
@@ -14,6 +13,5 @@ module.exports = {
   '@pages': path.resolve('src/pages'),
   '@components': path.resolve('src/components'),
   '@pkg': path.resolve('package.json'),
-  // '@models': path.resolve('src/models'),
   '@hoc': path.resolve('src/hoc'),
 };

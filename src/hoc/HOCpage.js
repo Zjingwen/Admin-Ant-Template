@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { isEqual } from 'underscore';
-import { authentication, queryToJson, jsonToQuery } from '@utils/assist';
+import { queryToJson, jsonToQuery } from '@utils/assist';
 import Framing from '@components/Framing';
 import routerMap from '../pages/index';
-import {conf_liberty} from '@pkg';
+import { conf_liberty } from '@pkg';
 
-const {root} = conf_liberty;
+const { root } = conf_liberty;
 /**
  * page的高阶组件
  * @param {component} WrappedComponent 需要包裹的页面
@@ -28,7 +28,6 @@ export default function index(WrappedComponent) {
     }
 
     componentDidMount() {
-      authentication(this);
       this.ref.handleFrom && this.ref.handleFrom();
     };
 
@@ -52,7 +51,6 @@ export default function index(WrappedComponent) {
 
     handleOut() {
       localStorage.removeItem('userInfo');
-      window.location.href = '/ziying/user/sign';
     };
 
     render() {

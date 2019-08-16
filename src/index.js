@@ -1,4 +1,4 @@
-import './index.css';
+// import './index.css';
 
 import dva from 'dva';
 import browserHistory from 'history/createBrowserHistory';

@@ -4,8 +4,8 @@ const rules = require('./conf/rules');
 const plugins =  require('./conf/plugins');
 const apiMocker = require("webpack-api-mocker");
 const pkg = require('./package.json');
-console.log(pkg.conf_liberty.root);
 const root = pkg.conf_liberty.root.split('/')[1];
+
 module.exports = {
   mode: 'development',
   entry: ['babel-polyfill', './src/index.js'],
@@ -28,7 +28,7 @@ module.exports = {
     proxy: {
       '/api': {
         target: 'http://localhost:9000',
-        pathRewrite: {'^/api' : ''}
+        // pathRewrite: {'^/api' : ''}
       },
     },
     before(app) {

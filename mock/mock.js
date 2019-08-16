@@ -3,7 +3,7 @@ let Mock = require('mockjs');
 const Random = Mock.Random;
 
 module.exports = {
-  'GET /user/sign'(req, res) {
+  'GET /api/user/sign'(req, res) {
     res.json({
       status: {
         code: 1001,

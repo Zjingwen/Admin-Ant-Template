@@ -66,7 +66,7 @@
     "npm": ">=6.1.0"
   },
   "conf_liberty": {
-    "root": "/ziyings",
+    "root": "",
     "path": "mock",
     "url": {
       "mock": "http://localhost:8000/",

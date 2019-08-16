@@ -1,19 +1,3 @@
-/**
- * props 参数
- * {
-        visible: boolean,
-        width: number,
-        top: number,//不填默认为100
-        title: string,
-        onOk(val){
-            console.log(val)
-        },
-        onCancel(val){
-            console.log(val)
-        }
-    }
- */
-// import styles from './index.css';
 import React from 'react';
 import { Modal } from 'antd';
 
@@ -35,14 +19,14 @@ class ModalFrome extends React.Component {
     });
   }
 
-  hanldeOk = () => {
+  hanldeOk () {
     this.props.onOk('ok');
     this.setState({
       visible: false
     });
   };
 
-  hanldeCancel = () => {
+  hanldeCancel () {
     this.props.onCancel('cancel');
     this.setState({
       visible: false

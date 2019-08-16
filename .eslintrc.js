@@ -1,5 +1,5 @@
 module.exports = {
-  "extends": "umi",
+  parser: "babel-eslint",
   "settings": {
     "react": {
       "pragma": "React",

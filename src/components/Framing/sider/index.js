@@ -78,7 +78,7 @@ function menuItems(m, root = '') {
     const iconType = hasIcon(value.iconType);
 
     if (value.hasOwnProperty('next')) {
-      return (<SubMenu key={PATH} title={<><Icon type={iconType} /><span>{value.breadcrumbName}</span></>}>
+      return (<SubMenu key={PATH} title={<div><Icon type={iconType} /><span>{value.breadcrumbName}</span></div>}>
         {subMenuChildrens({
           next: value.next,
           path: root ? `${root}${value.path}` : value.path,

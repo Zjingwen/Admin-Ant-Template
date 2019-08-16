@@ -4,8 +4,10 @@ import dva from 'dva';
 import browserHistory from 'history/createBrowserHistory';
 import router from './router';
 import { message } from 'antd';
+import {conf_liberty} from '@pkg';
 
-const root = '/ziying';
+// 根路径
+const { root } = conf_liberty;
 
 // 1. Initialize
 const app = dva({

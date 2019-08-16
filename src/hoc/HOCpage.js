@@ -3,11 +3,9 @@ import { isEqual } from 'underscore';
 import { authentication, queryToJson, jsonToQuery } from '@utils/assist';
 import Framing from '@components/Framing';
 import routerMap from '../pages/index';
+import {conf_liberty} from '@pkg';
 
-function handleGetQuery(q) {
-  return q ? queryToJson(q) : {};
-}
-
+const {root} = conf_liberty;
 /**
  * page的高阶组件
  * @param {component} WrappedComponent 需要包裹的页面
@@ -16,7 +14,7 @@ export default function index(WrappedComponent) {
   return class extends Component {
     constructor(props) {
       super(props);
-      const query = props.history && handleGetQuery(props.history.location.search);
+      const query = props.history && queryToJson(props.history.location.search);
       this.state = {
         query: query,
       };
@@ -25,7 +23,7 @@ export default function index(WrappedComponent) {
     };
 
     static getDerivedStateFromProps(props, state) {
-      const query = props.history && handleGetQuery(props.history.location.search);
+      const query = props.history && queryToJson(props.history.location.search);
       return isEqual(query, state.query) ? null : { query: query };
     }
 
@@ -85,7 +83,7 @@ export default function index(WrappedComponent) {
           name={userName}
           headerMenus={headerMenus}
           routerMap={routerMap}
-          root="/ziying"
+          root={root}
         >
           <div style={style}>
             <WrappedComponent

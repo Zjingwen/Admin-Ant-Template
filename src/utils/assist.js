@@ -51,8 +51,12 @@ export function storageRemove(item){
   return false;
 }
 
+/**
+ * query转json
+ * @param {string} str query参数
+ */
 export function queryToJson(str){
-  if(str === '') return '';
+  if(str === '') return {};
   return str.split('?')[1].split('&').reduce(function(prev, curr, i, arr) {
     let p = curr.split('=');
     prev[decodeURIComponent(p[0])] = decodeURIComponent(p[1]);

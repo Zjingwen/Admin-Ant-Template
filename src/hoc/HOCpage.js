@@ -51,6 +51,7 @@ export default function index(WrappedComponent) {
 
     handleOut() {
       localStorage.removeItem('userInfo');
+      window.location.href = '/user/sign';
     };
 
     render() {

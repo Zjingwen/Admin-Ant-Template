@@ -14,4 +14,5 @@ module.exports = {
   '@components': path.resolve('src/components'),
   '@pkg': path.resolve('package.json'),
   '@hoc': path.resolve('src/hoc'),
+  '@lib': path.resolve('src/lib'),
 };

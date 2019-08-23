@@ -1,5 +1,3 @@
-// import './index.css';
-
 import dva from 'dva';
 import browserHistory from 'history/createBrowserHistory';
 import router from './router';

@@ -28,7 +28,6 @@ module.exports = {
     proxy: {
       '/api': {
         target: 'http://localhost:9000',
-        // pathRewrite: {'^/api' : ''}
       },
     },
     before(app) {

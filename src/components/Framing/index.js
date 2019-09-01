@@ -20,8 +20,7 @@ import Content from './Content';
 function Framing(props){
   const [collapsed, handleCollapsed] = useState(false);
   const STYLE = {
-    minHeight: '100vh',
-    overflowY: 'scroll',
+    minHeight: '100vh'
   };
   let style_layout = {
     marginLeft: collapsed ? 80 : 200,

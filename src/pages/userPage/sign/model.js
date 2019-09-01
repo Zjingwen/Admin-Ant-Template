@@ -20,8 +20,8 @@ export default {
           sign: json.result.sign,
         }));
         const path = PKG_CONF_ROOT ? 
-          PKG_CONF_ROOT + '/index':
-          '/index';
+          PKG_CONF_ROOT + '/':
+          '/';
         yield put(routerRedux.push(path));
       }else{
         message.error(msg);

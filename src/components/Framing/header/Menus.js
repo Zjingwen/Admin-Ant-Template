@@ -8,9 +8,11 @@ const MenuItem = Menu.Item;
  */
 export default (props) => {
   const { children } = props.menus.props;
-  const menuItems = children.map((v, i) => {
-    return <MenuItem key={i}>{v}</MenuItem>;
-  });
+  const menuItems = Array.isArray(children) ?
+    children.map((v, i) => {
+      return <MenuItem key={i}>{v}</MenuItem>;
+    }) :
+    <MenuItem>{children}</MenuItem>;
 
   const MENU = (<Menu>
     {menuItems}

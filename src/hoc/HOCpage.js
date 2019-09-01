@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { isEqual } from 'underscore';
 import { queryToJson, jsonToQuery } from '@utils/assist';
 import Framing from '@components/Framing';
@@ -11,7 +11,7 @@ const { root } = conf_liberty;
  * @param {component} WrappedComponent 需要包裹的页面
  */
 export default function index(WrappedComponent) {
-  return class extends Component {
+  return class extends React.Component {
     constructor(props) {
       super(props);
       const query = props.history && queryToJson(props.history.location.search);
@@ -69,7 +69,6 @@ export default function index(WrappedComponent) {
 
       const headerMenus = <div>
         <span onClick={() => this.handleOut()}>退出登陆</span>
-        <span onClick={() => { }}></span>
       </div>;
 
       const style = {

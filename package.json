@@ -7,7 +7,7 @@
   "scripts": {
     "start": "webpack-dev-server --open --config webpack.config.dev.js",
     "build": "webpack --config webpack.config.pro.js",
-    "build:dll": "webpack --config webpack.dll.config.js",
+    "build:dll": "webpack --config webpack.config.dll.js",
     "analyzer": "webpack --config webpack.config.analyzer.js",
     "lint": "eslint --ext .js src"
   },

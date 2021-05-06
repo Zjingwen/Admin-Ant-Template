@@ -57,7 +57,7 @@
     "style-loader": "^1.0.0",
     "terser-webpack-plugin": "1.4.1",
     "uglifyjs-webpack-plugin": "2.2.0",
-    "underscore": "1.9.1",
+    "underscore": "1.12.1",
     "webpack": "4.39.2",
     "webpack-api-mocker": "1.7.6",
     "webpack-bundle-analyzer": "3.4.1",
